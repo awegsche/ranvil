@@ -26,6 +26,21 @@ pub struct Region {
     data: Vec<u8>,
 }
 
+/// Returns a Vec<_> of all the minecraft savegames
+pub fn get_saves() -> Option<Vec<Save>> {
+    let minecraft_saves_dir = dirs::config_dir()?.join(".minecraft/saves");
+
+    Some(
+        minecraft_saves_dir
+            .read_dir()
+            .unwrap()
+            .filter_map(Result::ok)
+            .map(|p| Save::from_path(p.path()))
+            .filter_map(Result::ok)
+            .collect::<Vec<Save>>(),
+    )
+}
+
 impl Region {
     pub fn new(x: i32, y: i32) -> Self {
         Self { x, y, data: vec![] }
