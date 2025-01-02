@@ -103,7 +103,6 @@ impl Region {
 }
 
 fn get_region_coords(filename: &str) -> (i32, i32) {
-    println!("Filename: {}", filename);
     static RE: Lazy<Regex> = Lazy::new(|| Regex::new(r"r\.(-?\d+)\.(-?\d+)\.mca").unwrap());
     let caps = RE.captures(filename).unwrap();
     let x = caps.get(1).unwrap().as_str().parse().unwrap();
