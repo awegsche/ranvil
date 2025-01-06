@@ -18,6 +18,12 @@ pub struct Save {
     pub regions: Vec<Region>,
 }
 
+impl std::fmt::Display for Save {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{} [{} regions]", self.name, self.regions.len())
+    }
+}
+
 #[derive(Debug)]
 pub struct Region {
     x: i32,
