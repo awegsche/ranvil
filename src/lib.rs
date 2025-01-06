@@ -13,8 +13,8 @@ const SECTOR_SIZE: usize = 4 * 1024;
 
 #[derive(Debug)]
 pub struct Save {
-    name: String,
-    path: PathBuf,
+    pub name: String,
+    pub path: PathBuf,
     pub regions: Vec<Region>,
 }
 
