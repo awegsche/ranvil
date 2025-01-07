@@ -47,6 +47,10 @@ pub fn get_saves() -> Option<Vec<Save>> {
     )
 }
 
+pub fn get_save<S: Into<String>>(name: S) -> Option<Save> {
+    Save::from_path(dirs::config_dir()?.join(".minecraft/saves").join(name.into())).ok()
+}
+
 impl Region {
     pub fn new(x: i32, y: i32) -> Self {
         Self { x, y, data: vec![] }
