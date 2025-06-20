@@ -47,6 +47,21 @@ pub fn get_saves() -> Option<Vec<Save>> {
     )
 }
 
+/// Returns a Vec<_> of all the minecraft savegames
+/// for the given game instance (e.g. CurseForge installation)
+pub fn get_saves_from_instance<P: AsRef<Path>>(instance: P) -> Option<Vec<Save>> {
+    Some(
+        instance
+            .as_ref()
+            .read_dir()
+            .unwrap()
+            .filter_map(Result::ok)
+            .map(|p| Save::from_path(p.path()))
+            .filter_map(Result::ok)
+            .collect::<Vec<Save>>(),
+    )
+}
+
 pub fn get_save<S: Into<String>>(name: S) -> Option<Save> {
     Save::from_path(dirs::config_dir()?.join(".minecraft/saves").join(name.into())).ok()
 }
