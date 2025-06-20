@@ -125,6 +125,13 @@ impl Region {
             Ok(None)
         }
     }
+
+    pub fn get_x_coord(&self) -> i32 {
+        self.x
+    }
+    pub fn get_z_coord(&self) -> i32 {
+        self.y
+    }
 }
 
 fn get_region_coords(filename: &str) -> (i32, i32) {
