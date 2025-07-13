@@ -50,20 +50,20 @@ pub fn get_save<S: Into<String>>(name: S) -> Option<Save> {
 // -------------------------------------------------------------------------------------------------
 // ---- structs ------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct SaveMeta {
     pub name: String,
     pub path: PathBuf,
     pub regions: Vec<(i32, i32)>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Save {
     pub meta: SaveMeta,
     pub regions: Vec<region::Region>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct GridView<'a> {
     save: &'a SaveMeta,
 }

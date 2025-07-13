@@ -16,7 +16,7 @@ pub const SECTOR_SIZE: usize = 4 * 1024;
 /// Region struct.
 ///
 /// Contains raw byte data. If you want the chunks, expand this into `ChunkRegion`.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Region {
     x: i32,
     y: i32,
