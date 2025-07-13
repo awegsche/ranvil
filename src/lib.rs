@@ -142,14 +142,15 @@ impl SaveMeta {
 
 impl<'a> std::fmt::Display for GridView<'a> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        writeln!(f, "{}", self.save.name)?;
+        writeln!(f, "{} [{} regions]", self.save.name, self.save.regions.len())?;
+
         let min_x = self.save.regions.iter().map(|(x, _)| *x).min().unwrap();
         let max_x = self.save.regions.iter().map(|(x, _)| *x).max().unwrap();
         let min_z = self.save.regions.iter().map(|(_, z)| *z).min().unwrap();
         let max_z = self.save.regions.iter().map(|(_, z)| *z).max().unwrap();
 
         write!(f, "    +")?;
-        for x in min_x..=max_x {
+        for _ in min_x..=max_x {
             write!(f, "-")?;
         }
         writeln!(f, "+")?;
@@ -170,10 +171,23 @@ impl<'a> std::fmt::Display for GridView<'a> {
             writeln!(f, "|")?;
         }
         write!(f, "    +")?;
-        for x in min_x..=max_x {
+        for _ in min_x..=max_x {
             write!(f, "-")?;
         }
         writeln!(f, "+")?;
+
+        write!(f, "   ")?;
+        let mut x = min_x;
+        loop  {
+            if x % 5 == 0 { break; }
+            write!(f, " ")?;
+            x += 1;
+        }
+        loop {
+            if x > max_x { break; }
+        write!(f, "{:3}  ", x)?;
+        x += 5;
+        }
 
         Ok(())
     }

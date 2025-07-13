@@ -1,5 +1,5 @@
 use std::path::PathBuf;
-use rnbt::{NbtField, NbtValue};
+use rnbt::NbtField;
 use crate::region::Region;
 
 #[derive(Debug)]
